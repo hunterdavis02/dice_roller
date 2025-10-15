@@ -19,8 +19,15 @@ class Player:
         return self.__repr__()
     
     def add_die(self, number, color):
-        d = Die(number, color)
+        d = Die(number, color, self.id)
+        self.dice.append(d)
         return d.dieID
+    
+    def roll(self):
+        total_roll = 0
+        for cubey_thingy in self.dice:
+            total_roll += cubey_thingy.roll()
+        return total_roll
 
 class Die:
     def __init__(self, number, color, playerID):
@@ -77,6 +84,9 @@ class DieGame:
     # Returns ID
     def add_dice(self, playerID, number, color):
         p = self.get_player_from_id(playerID)
+        if (p == None):
+            print(f"Player ID {playerID} not found.")
+            return None
         p_id = p.add_die(number, color)
         return p_id
 
@@ -95,7 +105,10 @@ dg.add_player("Rebecca")
 
 print(dg.get_player_ids())
 
-dg.add_dice(0, 6, "red")
+dg.add_dice(1, 6, "red")
+dg.add_dice(1, 6, "red")
+
+print(dg.get_player_from_id(1).roll())
 
 # dg.add_dice(dg.find_player("Hunter"), 6, "red")
 
