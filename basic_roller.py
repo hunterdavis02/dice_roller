@@ -113,3 +113,9 @@ print(dg.get_player_from_id(1).roll())
 # dg.add_dice(dg.find_player("Hunter"), 6, "red")
 
 # print(dg.players)
+
+def main():
+    print("<br>PHP works with this!")
+    
+if __name__ == "__main__":
+    main()
