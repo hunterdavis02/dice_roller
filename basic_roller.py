@@ -66,6 +66,12 @@ class DieGame:
                 return player
         return None
     
+    def get_id_from_player(self, name):
+        for player in self.players:
+            if(player.name == name):
+                return player.id
+        return None
+    
     def remove_player(self, playerID):
         for player in self.players:
             if(playerID == player.id):
@@ -96,26 +102,27 @@ class DieGame:
 
 
 
-# Testing
-dg = DieGame()
-
-
-dg.add_player("Hunter")
-dg.add_player("Rebecca")
-
-print(dg.get_player_ids())
-
-dg.add_dice(1, 6, "red")
-dg.add_dice(1, 6, "red")
-
-print(dg.get_player_from_id(1).roll())
-
-# dg.add_dice(dg.find_player("Hunter"), 6, "red")
-
-# print(dg.players)
-
 def main():
-    print("<br>PHP works with this!")
-    
+    # Testing
+    dg = DieGame()
+
+
+    dg.add_player("Hunter")
+    dg.add_player("Rebecca")
+
+    print(dg.get_player_ids())
+
+    dg.add_dice(1, 6, "red")
+    dg.add_dice(1, 6, "red")
+
+
+    print(dg.get_player_from_id(1).roll())
+    print("<br>")
+
+    dg.add_dice(dg.get_id_from_player("Hunter"), 6, "red")
+
+    print("<br>test")
+    print(dg.players)
+
 if __name__ == "__main__":
     main()
